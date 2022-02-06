@@ -28,10 +28,21 @@ jobs:
       # start using docker-compose
       - name: start apache kafka container
         run: docker-compose -f "docker-compose-expose.yml" up -d
+        
+      # copy the files into kafka container
+      - name: copy python files
+      - run: |
+          docker cp kafkaTest.py kafka:/root
+          docker cp test.py kafka:/root
 
-      # Runs a set of commands using the runners shell
+      # start kafka shell
+      - name: start kafka shell
+      - run: docker exec -it kafka /bin/sh
+      
+      # Install python and run the test script
       - name: Run a multi-line script
         run: |
           apk add python3
           apk add py3-pip
           pip install kafka-python
+          python3 test.py
