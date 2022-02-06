@@ -15,3 +15,6 @@ pip install kafka-python
 
 In order to run the test use the following command:
 python3 test.py
+
+library api used
+https://kafka-python.readthedocs.io/en/master/apidoc/modules.html
